@@ -13,11 +13,11 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('Students') -> insert ([
-            'name' => 'Gabriel',
-            'last_name' => 'Lapeire',
-            'dni' => '44164066',
-            'birthday' => '2002/05/14'
-        ]);
+        // DB::table('Students') -> insert ([
+        //     'name' => 'Gabriel',
+        //     'last_name' => 'Lapeire',
+        //     'dni' => '44164066',
+        //     'birthday' => '2002/05/14'
+        // ]);
     }
 }

@@ -19,7 +19,7 @@ class StudentFactory extends Factory
         return [
             'name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
-            'dni' => fake()->randomNumber(8, true),
+            'dni' => fake()->dni(),
             'birthday' => fake()->dateTimeBetween('-40 years', '-18 years'),
         ];
     }
