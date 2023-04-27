@@ -21,6 +21,7 @@ class StudentFactory extends Factory
             'last_name' => fake()->lastName(),
             'dni' => fake()->dni(),
             'birthday' => fake()->dateTimeBetween('-40 years', '-18 years'),
+            'status' => fake()->boolean(),
         ];
     }
 }

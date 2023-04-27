@@ -14,5 +14,6 @@ class Student extends Model
         'last_name',
         'dni',
         'birthday',
+        'status',
     ];
 }

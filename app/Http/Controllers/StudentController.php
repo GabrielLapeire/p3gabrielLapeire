@@ -13,7 +13,7 @@ class StudentController extends Controller
     public function index()
     {
 		$students = Student::all();
-        return view('student.index', compact('students'));
+        return view('students.index', compact('students'));
     }
 
     /**
@@ -21,7 +21,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('students.create');
     }
 
     /**
@@ -29,7 +29,24 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $student = new Student;
+        // $student->name = $request->name;
+        // $student->last_name =$request->last_name;
+        // $student->dni = $request->dni;
+        // $student->birthday = $request->birthday;
+        // $student->status = $request->status;
+        // $student->save();
+        
+        //metodo alternativo
+        $student = Student::create([
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'dni' => $request->dni,
+            'birthday' => $request->birthday,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('students.index');
     }
 
     /**
@@ -46,7 +63,7 @@ class StudentController extends Controller
     public function edit(string $id)
     {
         $student = Student::where('id', $id)->get();
-        return view('student.edit', compact('student'));
+        return view('students.edit', compact('student'));
     }
 
     /**
@@ -59,6 +76,7 @@ class StudentController extends Controller
         $student->last_name =$request->last_name;
         $student->dni = $request->dni;
         $student->birthday = $request->birthday;
+        $student->status = $request->status;
         $student->save();
         return redirect()->route('students.index');
     }
@@ -68,6 +86,7 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Student::destroy($id);
+        return redirect()->route('students.index');
     }
 }

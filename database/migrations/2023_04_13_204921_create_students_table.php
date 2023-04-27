@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('dni')->unique();
             $table->datetime('birthday');
+            $table->boolean('status');
             $table->timestamps();//genera 2 tablas de fecha de creacion y modificacion
         });
     }
