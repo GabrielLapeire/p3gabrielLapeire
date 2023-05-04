@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Traits\AuditTrait;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -48,7 +49,7 @@ class StudentController extends Controller
             'status' => $request->status,
         ]);
 
-        $this->logChanges('alta', 'A', 1);
+        $this->logChanges('alta', 'A');
 
         return redirect()->route('students.index');
     }
@@ -83,7 +84,7 @@ class StudentController extends Controller
         $student->status = $request->status;
         $student->save();
 
-        $this->logChanges('modificación', 'M', 1);
+        $this->logChanges('modificación', 'M',);
 
         return redirect()->route('students.index');
     }
@@ -95,7 +96,7 @@ class StudentController extends Controller
     {
         Student::destroy($id);
 
-        $this->logChanges('baja', 'B', 1);
+        $this->logChanges('baja', 'B');
 
         return redirect()->route('students.index');
     }
