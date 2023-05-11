@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuditController;
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('students', StudentController::class); //conjunto de rutas CRUD
+    Route::resource('subjects', SubjectController::class);
+    Route::resource('careers', CareerController::class);
     Route::get('audit', [AuditController::class, 'index']);
 });
 

@@ -15,16 +15,22 @@
         </div>
     </div>
 
-    <table border="1" style="">
+    <table border="1">
         <thead>
             <tr>
                 <th>Estudiantes</th>
+                <th>Materias</th>
+                <th>Carreras</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <th><a href="students/create"><button>Alta de estudiantes</button></a> <br>
-                    <a href="students"><button>Indice de estudiantes</button></a>
+                    <a href="students"><button>Indice de estudiantes</button></a></th>
+                <th><a href="subjects/create">Alta de materias</a> <br>
+                    <a href="subjects">Indice de materias</a></th>
+                <th><a href="careers/create">Alta de carreras</a> <br>
+                    <a href="careers">Indice de carreras</a>
                 </th>
             </tr>
         </tbody>
