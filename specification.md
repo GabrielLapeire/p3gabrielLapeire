@@ -46,3 +46,29 @@ Dia
 Hora inicio
 Hora fin
 Tope
+
+Relaciones
+Audit 	*...1	Career
+Audit 	*...1	Student
+Audit 	*...1	Subject
+Audit 	*...1	User
+
+Career	1...*	Audit
+Career 	*...*	Student
+Career 	*...*	Subject
+Career 	*...*	User
+
+Student	1...*	Audit
+Student	*...*	Career
+Student	*...*	Subject
+Student	*...*	User
+
+Subject	1...*	Audit
+Subject	*...*	Career
+Subject	*...*	Student
+Subject	*...*	User
+
+User	1...*	Audit
+User 	*...*	Career
+User 	*...*	Student
+User 	*...*	Subject
