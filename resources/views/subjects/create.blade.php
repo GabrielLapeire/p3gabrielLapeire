@@ -1,3 +1,4 @@
+<a href="dashboard">Volver</a> <br>
 <form action="{{route('subjects.store')}}" method="POST">
     @csrf
     <table border="1">

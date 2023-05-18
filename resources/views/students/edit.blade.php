@@ -1,3 +1,4 @@
+<a href="dashboard">Volver</a> <br>
 <form action="{{route('students.update', $student[0]->id)}}" method="POST">
     @csrf
     @method('put')
@@ -9,6 +10,8 @@
                 <th>DNI</th>
                 <th>Cumpleaños</th>
                 <th>Estado</th>
+                <th>Carreras</th>
+                <th>Materias</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +25,16 @@
                     <input name="status" type="radio" id="false" value="0">
                     <label for="false">false</label>
                 </th>
+                {{-- <th><select name="careers">
+                    @foreach ($careers as $career)
+                    <option value="{{$career->id}}">{{$career->name}}</option>
+                    @endforeach
+                </select>
+                </th>
+                <th>@foreach ($subjects as $subject)
+                    <input name="subjects" type="checkbox" value="{{$subject->id}}">{{$subject->name}} <br>
+                    @endforeach
+                </th> --}}
             </tr>
         </tbody>
     </table>

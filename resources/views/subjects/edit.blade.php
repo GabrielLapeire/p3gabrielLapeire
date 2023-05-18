@@ -1,3 +1,4 @@
+<a href="dashboard">Volver</a> <br>
 <form action="{{route('subjects.update', $subject[0]->id)}}" method="POST">
     @csrf
     @method('put')

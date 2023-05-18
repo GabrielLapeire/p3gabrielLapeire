@@ -16,4 +16,9 @@ class Subject extends Model
     //     'time_end',
     //     'time_limit',
     ];
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'student_subjects');
+    }
 }

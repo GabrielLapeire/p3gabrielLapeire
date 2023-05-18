@@ -1,3 +1,4 @@
+<a href="dashboard">Volver</a> <br>
 <table border="1">
     <thead>
         <tr>

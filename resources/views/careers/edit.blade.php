@@ -1,3 +1,4 @@
+<a href="dashboard">Volver</a> <br>
 <form action="{{route('careers.update', $career[0]->id)}}" method="POST">
     @csrf
     @method('put')

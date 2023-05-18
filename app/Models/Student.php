@@ -16,4 +16,9 @@ class Student extends Model
         'birthday',
         'status',
     ];
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'student_subjects');
+    }
 }
