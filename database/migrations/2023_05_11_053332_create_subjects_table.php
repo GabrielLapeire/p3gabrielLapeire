@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            // $table->date('day');
-            // $table->???('time_start');
-            // $table->???('time_end');
-            // $table->???('time_limit');
+            $table->bigInteger('career_id');
+            $table->foreign('career_id')->references('id')->on('careers')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
