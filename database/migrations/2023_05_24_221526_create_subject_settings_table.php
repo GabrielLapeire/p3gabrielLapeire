@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('subject_settings', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('subject_id');
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
-            
+            // $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+
             $table->date('day');
             $table->time('time_start');
             $table->time('time_end');

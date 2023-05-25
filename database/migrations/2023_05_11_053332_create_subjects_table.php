@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('career_id');
-            $table->foreign('career_id')->references('id')->on('careers')->onDelete('cascade');
+            // $table->foreign('career_id')->references('id')->on('careers')->onDelete('cascade');
 
             $table->timestamps();
         });
