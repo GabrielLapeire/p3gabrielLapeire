@@ -21,16 +21,22 @@
                 <th>Estudiantes</th>
                 <th>Materias</th>
                 <th>Carreras</th>
+                <th>Asistencias</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th><a href="students/create"><button>Alta de estudiantes</button></a> <br>
-                    <a href="students"><button>Indice de estudiantes</button></a></th>
-                <th><a href="subjects/create">Alta de materias</a> <br>
-                    <a href="subjects">Indice de materias</a></th>
-                <th><a href="careers/create">Alta de carreras</a> <br>
-                    <a href="careers">Indice de carreras</a>
+                <th><a href="students">Ver estudiantes</a> <br>
+                    <a href="students/create">Nuevo estudiante</a>
+                </th>
+                <th><a href="subjects">Ver materias</a> <br>
+                    <a href="subjects/create">Nueva materia</a>
+                </th>
+                <th><a href="careers">Ver carreras</a> <br>
+                    <a href="careers/create">Nueva carrera</a>
+                </th>
+                <th><a href="assistances">Ver asistencias</a> <br>
+                    <a href="assistances/create">Nueva asistencia</a>
                 </th>
             </tr>
         </tbody>

@@ -10,6 +10,7 @@ class Assistance extends Model
     use HasFactory;
 
     protected $fillable = [
+        'date',
         'student_id',
         'subject_id',
     ];

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('assistances', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
             $table->bigInteger('student_id');
             $table->bigInteger('subject_id');
             $table->timestamps();

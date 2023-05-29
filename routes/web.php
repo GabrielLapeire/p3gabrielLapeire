@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssistanceController;
 use App\Http\Controllers\AuditController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\ProfileController;
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('students', StudentController::class); //conjunto de rutas CRUD
     Route::resource('subjects', SubjectController::class);
     Route::resource('careers', CareerController::class);
+    Route::resource('assistances', AssistanceController::class);
     Route::get('audit', [AuditController::class, 'index']);
 });
 
