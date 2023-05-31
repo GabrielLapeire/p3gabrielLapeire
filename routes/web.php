@@ -36,8 +36,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('students', StudentController::class); //conjunto de rutas CRUD
     Route::resource('subjects', SubjectController::class);
     Route::resource('careers', CareerController::class);
-    Route::resource('assistances', AssistanceController::class);
-    Route::get('audit', [AuditController::class, 'index']);
+    Route::resource('assistances', AssistanceController::class, ['only' => [
+        'index', 'store', 'show', 'update', 'destroy', 'edit']]);
+    Route::get('audits', [AuditController::class, 'index']);
 });
+
+Route::post('assistances/create', [AssistanceController::class, 'create']);
+// ruta sin autenticacion de tipo post para alta de asistencias
 
 require __DIR__.'/auth.php';

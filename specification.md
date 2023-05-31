@@ -50,4 +50,5 @@ Tope
 problema
 > que el alumno pueda escanear un codigo QR sin venir a clases.
 > En que momento se crea un registro de asistencias.
-> 
+
+Entrega 5 de julio

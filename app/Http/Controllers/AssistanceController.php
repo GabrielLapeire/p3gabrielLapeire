@@ -30,7 +30,13 @@ class AssistanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $assistance = Assistance::create([
+            'date' => $request->date,
+            'student_id' => $request->student_id,
+            'subject_id' => $request->subject_id,
+        ]);
+
+        return redirect()->route('assistances.index');
     }
 
     /**
@@ -38,7 +44,8 @@ class AssistanceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $assistance = Assistance::where('id', $id)->get();
+        return view('assistances.edit', compact('assistance'));
     }
 
     /**
@@ -46,7 +53,13 @@ class AssistanceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $assistance = Assistance::find($id);
+        $assistance->date = $request->date;
+        $assistance->student_id = $request->student_id;
+        $assistance->subject_id = $request->subject_id;
+        $assistance->save();
+
+        return redirect()->route('assistances.index');
     }
 
     /**
@@ -54,6 +67,7 @@ class AssistanceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Assistance::destroy($id);
+        return redirect()->route('assistances.index');
     }
 }
