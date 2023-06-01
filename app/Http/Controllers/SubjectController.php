@@ -32,10 +32,6 @@ class SubjectController extends Controller
     {
         $subject = Subject::create([
             'name' => $request->name,
-        //     'day' => $request->day,
-        //     'time_start' => $request->time_start,
-        //     'time_end' => $request->time_end,
-        //     'time_limit' => $request->time_limit,
         ]);
 
         return redirect()->route('subjects.index');
@@ -57,10 +53,6 @@ class SubjectController extends Controller
     {
         $subject = Subject::find($id);
         $subject->name = $request->name;
-        // $subject->day =$request->day;
-        // $subject->time_start = $request->time_start;
-        // $subject->time_end = $request->time_end;
-        // $subject->time_limit = $request->time_limit;
         $subject->save();
 
         return redirect()->route('subjects.index');

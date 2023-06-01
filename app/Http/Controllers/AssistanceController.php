@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Assistance;
-use Illuminate\Support\Facades\Auth;
 
 class AssistanceController extends Controller
 {
@@ -22,7 +21,8 @@ class AssistanceController extends Controller
      */
     public function create()
     {
-        return view('assistances.create');
+        dd('llego');
+        // return view('assistances.create');
     }
 
     /**
@@ -30,13 +30,22 @@ class AssistanceController extends Controller
      */
     public function store(Request $request)
     {
-        $assistance = Assistance::create([
-            'date' => $request->date,
-            'student_id' => $request->student_id,
-            'subject_id' => $request->subject_id,
-        ]);
+        dd($request);
+        // $assistance = Assistance::create([
+        //     'date' => $request->date,
+        //     'student_id' => $request->student_id,
+        //     'subject_id' => $request->subject_id,
+        // ]);
 
-        return redirect()->route('assistances.index');
+        // return redirect()->route('assistances.index');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
     }
 
     /**
