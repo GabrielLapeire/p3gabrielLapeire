@@ -43,10 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::get('audits', [AuditController::class, 'index'])->name('audits.index');
 });
 
-Route::get('show', [AssistanceController::class, 'show'])->name('assistance.show');
-
-//Route::get('assistances/create', [AssistanceController::class, 'create'])->name('assistances.create');
-//Route::post('assistances', [AssistanceController::class, 'store'])->name('assistances.store');
+Route::get('assistances/create', [AssistanceController::class, 'create'])->name('assistances.create');
+Route::post('assistances', [AssistanceController::class, 'store'])->name('assistances.store');
 // ruta sin autenticacion de tipo post para alta de asistencias
 
 require __DIR__.'/auth.php';

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Assistance;
+use Carbon\Carbon;
 
 class AssistanceController extends Controller
 {
@@ -21,8 +22,7 @@ class AssistanceController extends Controller
      */
     public function create()
     {
-        dd('llego');
-        // return view('assistances.create');
+        return view('assistances.create');
     }
 
     /**
@@ -30,7 +30,15 @@ class AssistanceController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $date = Carbon::now();
+        // $date = $date->toDateString();
+        $date = $date->toTimeString();
+        dd($date);
+
+        // buscar estudiante por dni (error si no existe)
+        // agrupar materias de estudiante
+        // fecha y hora actual
+
         // $assistance = Assistance::create([
         //     'date' => $request->date,
         //     'student_id' => $request->student_id,
