@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Assistance;
+use App\Models\Student;
 use Carbon\Carbon;
+use exception;
 
 class AssistanceController extends Controller
 {
@@ -30,19 +32,29 @@ class AssistanceController extends Controller
      */
     public function store(Request $request)
     {
-        $date = Carbon::now();
-        // $date = $date->toDateString();
-        $date = $date->toTimeString();
-        dd($date);
+        $student = Student::where('dni', $request->dni)->first();
+        try {
+            // dd($student->name);
+            $subjects = $student->subjects;
+            // dd($subjects);
+            $date = Carbon::now('America/Buenos_Aires');
+            // $date = $date->toDateString();
+            $date = $date->toTimeString();
+            // dd($date);
+        }
+        catch(exception) {
+            print('<h2>El estudiante no existe<h2>');
+        }        
 
         // buscar estudiante por dni (error si no existe)
         // agrupar materias de estudiante
         // fecha y hora actual
 
         // $assistance = Assistance::create([
-        //     'date' => $request->date,
-        //     'student_id' => $request->student_id,
-        //     'subject_id' => $request->subject_id,
+        //     'date' => $date,
+        //     'student_id' => $student->id,
+        //     'subject_id' => $subjects->id,
+        // segun dia y hora
         // ]);
 
         // return redirect()->route('assistances.index');
