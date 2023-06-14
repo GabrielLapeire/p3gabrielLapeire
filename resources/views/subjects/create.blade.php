@@ -1,4 +1,4 @@
-<a href="dashboard">Volver</a> <br>
+<a href="dashboard"><button>Volver</button></a> <br>
 <form action="{{route('subjects.store')}}" method="POST">
     @csrf
     <table border="1">
@@ -9,7 +9,7 @@
         </thead>
         <tbody>
             <tr>
-                <th><input name="name" type="text"></th>
+                <th><input name="name" type="text" required></th>
             </tr>
         </tbody>
     </table>

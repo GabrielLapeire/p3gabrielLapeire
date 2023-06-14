@@ -14,11 +14,11 @@ class CareerSeeder extends Seeder
     public function run(): void
     {
         DB::table('careers') -> insert ([
-            'name' => 'Análisis_y_desarrollo_de_software',
+            'name' => 'Análisis y desarrollo de software',
         ]);
 
         DB::table('careers') -> insert ([
-            'name' => 'Profesorado_de_historia',
+            'name' => 'Profesorado de historia',
         ]);
 
         DB::table('careers') -> insert ([

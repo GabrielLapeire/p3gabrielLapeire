@@ -1,4 +1,4 @@
-<a href="dashboard">Volver</a> <br>
+<a href="dashboard"><button>Volver</button></a> <br>
 <form action="{{route('assistances.update', $assistance[0]->id)}}" method="POST">
     @csrf
     @method('put')
@@ -10,7 +10,7 @@
         </thead>
         <tbody>
             <tr>
-                <th><input name="date" type="date" value="{{$assistance[0]->date}}"></th>
+                <th><input name="date" type="date" value="{{$assistance[0]->date}}" required></th>
             </tr>
         </tbody>
     </table>

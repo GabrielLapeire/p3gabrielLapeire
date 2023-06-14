@@ -1,8 +1,9 @@
-<a href="dashboard">Volver</a> <br>
+<a href="dashboard"><button>Volver</button></a> <br>
 <table border="1">
     <thead>
         <tr>
             <th>Nombre</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>

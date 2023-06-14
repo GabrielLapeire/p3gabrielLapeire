@@ -14,22 +14,22 @@ class SubjectSeeder extends Seeder
     public function run(): void
     {
         DB::table('subjects') -> insert ([
-            'name' => 'Programación_1',
+            'name' => 'Programación 1',
             'career_id' => '1',
         ]);
 
         DB::table('subjects') -> insert ([
-            'name' => 'Seminario_1',
+            'name' => 'Seminario 1',
             'career_id' => '2',
         ]);
 
         DB::table('subjects') -> insert ([
-            'name' => 'Seminario_1',
+            'name' => 'Seminario 1',
             'career_id' => '1',
         ]);
 
         DB::table('subjects') -> insert ([
-            'name' => 'Matemática_1',
+            'name' => 'Matemática 1',
             'career_id' => '3',
         ]);
     }

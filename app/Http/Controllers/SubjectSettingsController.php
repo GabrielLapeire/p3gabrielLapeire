@@ -14,7 +14,7 @@ class SubjectSettingsController extends Controller
     public function index()
     {
 		$subjectSettings = SubjectSettings::all();
-        return view('subjectSetings.index', compact('subjectSettings'));
+        return view('subjectSettings.index', compact('subjectSettings'));
     }
 
     /**

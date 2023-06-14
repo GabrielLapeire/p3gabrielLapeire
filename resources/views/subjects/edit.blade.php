@@ -1,4 +1,4 @@
-<a href="dashboard">Volver</a> <br>
+<a href="dashboard"><button>Volver</button></a> <br>
 <form action="{{route('subjects.update', $subject[0]->id)}}" method="POST">
     @csrf
     @method('put')
@@ -10,7 +10,7 @@
         </thead>
         <tbody>
             <tr>
-                <th><input name="name" type="text" value="{{$subject[0]->name}}"></th>
+                <th><input name="name" type="text" value="{{$subject[0]->name}}" required></th>
             </tr>
         </tbody>
     </table>
