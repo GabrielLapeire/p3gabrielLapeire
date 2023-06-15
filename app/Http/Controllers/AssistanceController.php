@@ -40,7 +40,7 @@ class AssistanceController extends Controller
             $date = Carbon::now('America/Buenos_Aires');
             // $date = $date->toDateString();
             $date = $date->toTimeString();
-            // dd($date);
+            // dd($date->weekday());
         }
         catch(exception) {
             print('<h2>El estudiante no existe<h2>');

@@ -11,7 +11,7 @@
         <tr>
             <th>{{$subject->name}}</th>
             <th><a href="subjects/{{$subject->id}}/edit"><button>Editar</button></a> <br>
-                <a href="subjectSettings"><button>Configurar</button></a>
+                <a href="subjectClass/{{$subject->id}}"><button>Clases</button></a>
                 <form action="subjects/{{$subject->id}}" method="POST">
                     @csrf
                     @method('delete')

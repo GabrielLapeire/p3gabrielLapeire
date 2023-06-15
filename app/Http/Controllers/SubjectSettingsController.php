@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use App\Models\SubjectSettings;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,12 @@ class SubjectSettingsController extends Controller
     {
 		$subjectSettings = SubjectSettings::all();
         return view('subjectSettings.index', compact('subjectSettings'));
+    }
+
+    public function subjectClass($id)
+    {
+        $subject = Subject::find($id);
+        dd($subject->name);
     }
 
     /**

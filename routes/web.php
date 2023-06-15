@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('careers', CareerController::class);
     Route::resource('subjects', SubjectController::class);
     Route::resource('subjectSettings', SubjectSettingsController::class);
+    Route::get('subjectClass/{id}', [SubjectSettingsController::class, 'subjectClass'])->name('subjectClass');
   
     Route::resource('assistances', AssistanceController::class, ['only' => ['index', 'update', 'destroy', 'edit']]);
 
