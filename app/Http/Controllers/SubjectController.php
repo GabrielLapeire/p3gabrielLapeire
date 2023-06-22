@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Career;
 use Illuminate\Http\Request;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-		$subjects = Subject::all();
+        $user = Auth::user();
+		$subjects = $user->subjects;
         return view('subjects.index', compact('subjects'));
     }
 
@@ -22,7 +24,8 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return view('subjects.create');
+        $careers = Career::all();
+        return view('subjects.create', compact('careers'));
     }
 
     /**
@@ -42,8 +45,9 @@ class SubjectController extends Controller
      */
     public function edit(string $id)
     {
+        $careers = Career::all();
         $subject = Subject::where('id', $id)->get();
-        return view('subjects.edit', compact('subject'));
+        return view('subjects.edit', compact('subject', 'careers'));
     }
 
     /**

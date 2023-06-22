@@ -16,21 +16,25 @@ class SubjectSeeder extends Seeder
         DB::table('subjects') -> insert ([
             'name' => 'Programación 1',
             'career_id' => '1',
+            'user_id' => '1',
         ]);
 
         DB::table('subjects') -> insert ([
             'name' => 'Seminario 1',
             'career_id' => '2',
+            'user_id' => '2',
         ]);
 
         DB::table('subjects') -> insert ([
             'name' => 'Seminario 1',
             'career_id' => '1',
+            'user_id' => '2',
         ]);
 
         DB::table('subjects') -> insert ([
             'name' => 'Matemática 1',
             'career_id' => '3',
+            'user_id' => '3',
         ]);
     }
 }

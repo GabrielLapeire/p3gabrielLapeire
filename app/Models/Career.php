@@ -16,6 +16,6 @@ class Career extends Model
 
     public function subjects(): HasMany
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Subject::class);
     }
 }

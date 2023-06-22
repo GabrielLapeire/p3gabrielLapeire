@@ -15,6 +15,7 @@ class Subject extends Model
     protected $fillable = [
         'name',
         'career_id',
+        'user_id',
     ];
 
     public function students(): BelongsToMany
@@ -30,5 +31,10 @@ class Subject extends Model
     public function subjectSettings(): HasMany
     {
         return $this->hasMany(SubjectSettings::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

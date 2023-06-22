@@ -21,7 +21,8 @@ class SubjectSettingsController extends Controller
     public function subjectClass($id)
     {
         $subject = Subject::find($id);
-        dd($subject->name);
+        $subjectSettings = $subject->subjectSettings;
+        return view('subjectSettings.index', compact('subjectSettings'));
     }
 
     /**
