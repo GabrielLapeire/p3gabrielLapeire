@@ -1,4 +1,4 @@
-<a href="dashboard"><button>Volver</button></a> <br>
+<a href="../dashboard"><button>Volver</button></a> <br>
 <form action="{{route('assistances.store')}}" method="POST">
     @csrf
     <h3>DNI del alumno</h3>

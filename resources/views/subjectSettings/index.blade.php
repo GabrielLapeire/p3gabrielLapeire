@@ -1,5 +1,5 @@
-<a href="subjects"><button>Volver</button></a> <br>
-<a href="subjectSettings/create"><button>Nueva clase</button></a> <br>
+<a href="../subjects"><button>Volver</button></a> <br>
+<a href="../subjectSettings/create"><button>Nueva clase</button></a> <br>
 <table border="1">
     <thead>
         <tr>

@@ -1,4 +1,4 @@
-<a href="../subjectSettings"><button>Volver</button></a> <br>
+<a href="../subjects"><button>Volver</button></a> <br>
 <form action="{{route('subjectSettings.store')}}" method="POST">
     @csrf
     <table border="1">

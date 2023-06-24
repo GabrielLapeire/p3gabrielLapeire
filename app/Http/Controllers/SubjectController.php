@@ -35,6 +35,8 @@ class SubjectController extends Controller
     {
         $subject = Subject::create([
             'name' => $request->name,
+            'career_id' => $request->career_id,
+            'user_id' => Auth::user()->id,
         ]);
 
         return redirect()->route('subjects.index');

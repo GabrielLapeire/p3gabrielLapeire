@@ -1,4 +1,4 @@
-<a href="dashboard"><button>Volver</button></a> <br>
+<a href="../dashboard"><button>Volver</button></a> <br>
 <form action="{{route('students.store')}}" method="POST">
     @csrf
     <table border="1">

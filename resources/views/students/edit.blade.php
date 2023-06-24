@@ -1,4 +1,4 @@
-<a href="dashboard"><button>Volver</button></a> <br>
+<a href="../"><button>Volver</button></a> <br>
 <form action="{{route('students.update', $student[0]->id)}}" method="POST">
     @csrf
     @method('put')
