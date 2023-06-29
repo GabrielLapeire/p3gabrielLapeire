@@ -12,25 +12,22 @@ class SubjectSettingsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-		$subjectSettings = SubjectSettings::all();
-        return view('subjectSettings.index', compact('subjectSettings'));
-    }
-
-    public function subjectClass($id)
-    {
-        $subject = Subject::find($id);
+		$subject = Subject::find($id);
+        $subject_id = $subject->id;
         $subjectSettings = $subject->subjectSettings;
-        return view('subjectSettings.index', compact('subjectSettings'));
+        return view('subjectSettings.index', compact('subjectSettings', 'subject_id'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id)
     {
-        return view('subjectSettings.create');
+        $subject = Subject::find($id);
+        $subject_id = $subject->id;
+        return view('subjectSettings.create', compact('subject_id'));
     }
 
     /**
@@ -38,14 +35,17 @@ class SubjectSettingsController extends Controller
      */
     public function store(Request $request)
     {
-        $subjectSettings = SubjectSettings::create([
+        SubjectSettings::create([
+            'subject_id' => $request->subject_id,
             'day' => $request->day,
             'time_start' => $request->time_start,
             'time_end' => $request->time_end,
             'time_limit' => $request->time_limit,
         ]);
 
-        return redirect()->route('subjectSettings.index');
+        $subject_id = $request->subject_id;
+        $subjectSettings = SubjectSettings::where('subject_id', $subject_id)->get();
+        return view('subjectSettings.index', compact('subjectSettings', 'subject_id'));
     }
 
     /**
@@ -53,8 +53,8 @@ class SubjectSettingsController extends Controller
      */
     public function edit(string $id)
     {
-        $subjectSettings = SubjectSettings::where('id', $id)->get();
-        return view('subjectSettings.edit', compact('subjectSettings'));
+        $subjectSetting = SubjectSettings::where('id', $id)->get();
+        return view('subjectSettings.edit', compact('subjectSetting'));
     }
 
     /**
@@ -69,7 +69,11 @@ class SubjectSettingsController extends Controller
         $subjectSettings->time_limit = $request->time_limit;
         $subjectSettings->save();
 
-        return redirect()->route('subjectSettings.index');
+        // $subjectSettings = SubjectSettings::find($request->id);
+        $subject_id = $request->id;
+        dd($subject_id);
+        $subjectSettings = SubjectSettings::where('subject_id', $subject_id)->get();
+        return view('subjectSettings.index', compact('subjectSettings', 'subject_id'));
     }
 
     /**
