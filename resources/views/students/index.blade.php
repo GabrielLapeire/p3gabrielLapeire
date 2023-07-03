@@ -7,6 +7,7 @@
             <th>DNI</th>
             <th>Cumpleaños</th>
             <th>Estado</th>
+            <th>Materias</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -18,6 +19,7 @@
             <th>{{$student->dni}}</th>
             <th>{{$student->birthday}}</th>
             <th>{{$student->status}}</th>
+            <th>{{$student->subjects}}</th>
             <th><a href="students/{{$student->id}}/edit"><button>Editar</button></a>
                 <form action="students/{{$student->id}}" method="POST">
                     @csrf

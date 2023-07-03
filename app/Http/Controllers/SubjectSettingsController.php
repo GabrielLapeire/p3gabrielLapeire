@@ -44,8 +44,7 @@ class SubjectSettingsController extends Controller
         ]);
 
         $subject_id = $request->subject_id;
-        $subjectSettings = SubjectSettings::where('subject_id', $subject_id)->get();
-        return view('subjectSettings.index', compact('subjectSettings', 'subject_id'));
+        return redirect()->route('subjectSettings.index', ['id' => $subject_id]);
     }
 
     /**
@@ -69,10 +68,8 @@ class SubjectSettingsController extends Controller
         $subjectSettings->time_limit = $request->time_limit;
         $subjectSettings->save();
 
-        // $subjectSettings = SubjectSettings::find($request->id);
         $subject_id = $request->subject_id;
-        $subjectSettings = SubjectSettings::where('subject_id', $subject_id)->get();
-        return view('subjectSettings.index', compact('subjectSettings', 'subject_id'));
+        return redirect()->route('subjectSettings.index', ['id' => $subject_id]);;
     }
 
     /**
@@ -82,11 +79,9 @@ class SubjectSettingsController extends Controller
     {
         $subjectSettings = SubjectSettings::find($id);
         $subject_id = $subjectSettings->subject_id;
-        $subjectSettings = SubjectSettings::where('subject_id', $subject_id)->get();
 
         SubjectSettings::destroy($id);
 
-        // return view('subjectSettings.index', compact('subjectSettings', 'subject_id'));
-        return redirect()->route('subjectSettings.index');
+        return redirect()->route('subjectSettings.index', ['id' => $subject_id]);
     }
 }

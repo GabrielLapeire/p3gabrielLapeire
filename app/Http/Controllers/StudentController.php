@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Career;
+use App\Models\Subject;
 use App\Traits\AuditTrait;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +26,9 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        $careers = Career::all();
+        $subjects = Subject::all();
+        return view('students.create', compact('careers', 'subjects'));
     }
 
     /**
@@ -49,6 +53,10 @@ class StudentController extends Controller
             'status' => $request->status,
         ]);
 
+        // insertar datos en la tabla intermedia
+        $subject_ids = $request->subject_list;
+        $student->subjects()->sync($subject_ids);
+
         $this->logChanges('alta', 'A');
 
         return redirect()->route('students.index');
@@ -68,7 +76,9 @@ class StudentController extends Controller
     public function edit(string $id)
     {
         $student = Student::where('id', $id)->get();
-        return view('students.edit', compact('student'));
+        $careers = Career::all();
+        $subjects = Subject::all();
+        return view('students.edit', compact('student', 'careers', 'subjects'));
     }
 
     /**
@@ -83,6 +93,10 @@ class StudentController extends Controller
         $student->birthday = $request->birthday;
         $student->status = $request->status;
         $student->save();
+
+        // actualizar datos de la tabla intermedia
+        $subject_ids = $request->subject_list;
+        $student->subjects()->sync($subject_ids);
 
         $this->logChanges('modificación', 'M',);
 

@@ -19,22 +19,23 @@
                 <th><input name="name" type="text" value="{{$student[0]->name}}" required></th>
                 <th><input name="last_name" type="text" value="{{$student[0]->last_name}}" required></th>
                 <th><input name="dni" type="text" value="{{$student[0]->dni}}" required></th>
-                <th><input name="birthday" type="datetime" value="{{$student[0]->birthday}}" required></th>
+                <th><input name="birthday" type="date" value="{{$student[0]->birthday}}" required></th>
                 <th><input name="status" type="radio" id="true" value="1" required>
                     <label for="true">true</label>
                     <input name="status" type="radio" id="false" value="0">
                     <label for="false">false</label>
                 </th>
-                {{-- <th><select name="careers">
+                <th><select name="career_list">
                     @foreach ($careers as $career)
                     <option value="{{$career->id}}">{{$career->name}}</option>
                     @endforeach
-                </select>
+                    </select>
                 </th>
+                {{-- se busca usar la carrera como filtro para las materias, no se busca guardar la carrera --}}
                 <th>@foreach ($subjects as $subject)
-                    <input name="subjects" type="checkbox" value="{{$subject->id}}">{{$subject->name}} <br>
+                    <input name="subject_list" type="checkbox" value="{{$subject->id}}">{{$subject->name}} <br>
                     @endforeach
-                </th> --}}
+                </th>
             </tr>
         </tbody>
     </table>
