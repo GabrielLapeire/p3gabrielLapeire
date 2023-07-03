@@ -1,4 +1,4 @@
-<a href="../subjects"><button>Volver</button></a> <br>
+<a href="../../subjects"><button>Volver</button></a> <br>
 <form action="{{route('subjectSettings.store')}}" method="POST">
     @csrf
     <input name="subject_id" type="hidden" value="{{$subject_id}}">

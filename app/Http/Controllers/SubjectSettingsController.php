@@ -70,8 +70,7 @@ class SubjectSettingsController extends Controller
         $subjectSettings->save();
 
         // $subjectSettings = SubjectSettings::find($request->id);
-        $subject_id = $request->id;
-        dd($subject_id);
+        $subject_id = $request->subject_id;
         $subjectSettings = SubjectSettings::where('subject_id', $subject_id)->get();
         return view('subjectSettings.index', compact('subjectSettings', 'subject_id'));
     }
@@ -81,8 +80,13 @@ class SubjectSettingsController extends Controller
      */
     public function destroy(string $id)
     {
+        $subjectSettings = SubjectSettings::find($id);
+        $subject_id = $subjectSettings->subject_id;
+        $subjectSettings = SubjectSettings::where('subject_id', $subject_id)->get();
+
         SubjectSettings::destroy($id);
 
+        // return view('subjectSettings.index', compact('subjectSettings', 'subject_id'));
         return redirect()->route('subjectSettings.index');
     }
 }

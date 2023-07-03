@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('subject_id');
             // $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
 
-            $table->enum('day', ["Lunes", "Martes", "Miercoes", "Jueves", "Viernes"]);
+            $table->string('day');
             $table->time('time_start');
             $table->time('time_end');
             $table->time('time_limit');

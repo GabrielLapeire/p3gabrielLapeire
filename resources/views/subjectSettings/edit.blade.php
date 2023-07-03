@@ -1,7 +1,8 @@
-<a href="../subjectSettings"><button>Volver</button></a> <br>
+<a href="../../subjects"><button>Volver</button></a> <br>
 <form action="{{route('subjectSettings.update', $subjectSetting[0]->id)}}" method="POST">
     @csrf
     @method('put')
+    <input name="subject_id" type="hidden" value="{{$subjectSetting[0]->subject_id}}">
     <table border="1">
         <thead>
             <tr>
