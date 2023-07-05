@@ -30,5 +30,7 @@ class DatabaseSeeder extends Seeder
         $this -> call([CareerSeeder::class]);
 
         $this -> call([SubjectSeeder::class]);
+
+        $this -> call([DaySeeder::class]);
     }
 }

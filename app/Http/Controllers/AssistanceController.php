@@ -7,6 +7,7 @@ use App\Models\Assistance;
 use App\Models\Student;
 use App\Models\SubjectSettings;
 use Carbon\Carbon;
+use App\Models\Day;
 use exception;
 
 class AssistanceController extends Controller
@@ -33,33 +34,32 @@ class AssistanceController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $student = Student::where('dni', $request->dni)->first();
-            // dd($student->name);
-            $subjects = $student->subjects;
-            // dd($subjects);
-        } catch(exception) {
-            print('<h2>El estudiante no existe<h2>');
-        }
-
-        $now = Carbon::now('America/Buenos_Aires');
-        $date = $now->toDateString();
-        $time = $now->toTimeString();
-        $day = $now->weekday();     //numero
-        // $day = $now->format('l');   //nombre (ingles)
-        // dd($day);
+        $student = Student::where('dni', $request->dni)->first();
         
-        try {
-            $subjectSettings = SubjectSettings::where('day', $day);
-            // unificar formato de day
-            // comparar tambien horarios
-        } catch (exception) {
-            print('<h2>El estudiante no tiene ninguna materia en este horario<h2>');
+        if (empty($student)) {
+            return response('El estudiante no existe');
+        }
+        
+        $now = Carbon::now();
+        $date = $now->toDateString();
+        $time = $now->format('H:i:s');
+        $weekday = $now->weekday();
+        $day = Day::where('id', $weekday)->get();
+        
+        $subjects = $student->subjects;
+        foreach ($subjects as $subject) {
+            $subjectSettings = $subject->subjectSettings;
+            foreach ($subjectSettings as $subjectSetting){
+                // dd($subjectSetting->time_limit);
+                if ($subjectSetting->day == $day &&
+                $time >= $subjectSetting->time_start &&
+                $time <= $subjectSetting->time_limit) {
+                    return response('ok');
+                }
+            }
         }
 
-        // buscar estudiante por dni (error si no existe)
-        // agrupar materias de estudiante
-        // fecha y hora actual
+        // return response('El estudiante no tiene ninguna materia en este horario');
 
         // $assistance = Assistance::create([
         //     'date' => $date,

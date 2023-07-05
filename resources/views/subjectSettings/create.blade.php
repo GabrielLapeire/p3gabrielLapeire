@@ -8,9 +8,7 @@
                 <th>Dia</th>
                 <th>Hora de inicio</th>
                 <th>Hora de cierre</th>
-                <th>Hora limite para asistencia <br>
-                    (por defecto se usa la hora de cierre)
-                </th>
+                <th>Hora limite para asistencia</th>
             </tr>
         </thead>
         <tbody>
