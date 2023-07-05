@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Assistance;
 use App\Models\Student;
+use App\Models\SubjectSettings;
 use Carbon\Carbon;
 use exception;
 
@@ -32,19 +33,29 @@ class AssistanceController extends Controller
      */
     public function store(Request $request)
     {
-        $student = Student::where('dni', $request->dni)->first();
         try {
+            $student = Student::where('dni', $request->dni)->first();
             // dd($student->name);
             $subjects = $student->subjects;
             // dd($subjects);
-            $date = Carbon::now('America/Buenos_Aires');
-            // $date = $date->toDateString();
-            $date = $date->toTimeString();
-            // dd($date->weekday());
-        }
-        catch(exception) {
+        } catch(exception) {
             print('<h2>El estudiante no existe<h2>');
-        }        
+        }
+
+        $now = Carbon::now('America/Buenos_Aires');
+        $date = $now->toDateString();
+        $time = $now->toTimeString();
+        $day = $now->weekday();     //numero
+        // $day = $now->format('l');   //nombre (ingles)
+        // dd($day);
+        
+        try {
+            $subjectSettings = SubjectSettings::where('day', $day);
+            // unificar formato de day
+            // comparar tambien horarios
+        } catch (exception) {
+            print('<h2>El estudiante no tiene ninguna materia en este horario<h2>');
+        }
 
         // buscar estudiante por dni (error si no existe)
         // agrupar materias de estudiante
