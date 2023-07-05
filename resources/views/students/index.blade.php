@@ -19,7 +19,12 @@
             <th>{{$student->dni}}</th>
             <th>{{$student->birthday}}</th>
             <th>{{$student->status}}</th>
-            <th>{{$student->subjects}}</th>
+            <th>
+                <ul>@foreach ($student->subjects as $subject)
+                    <li>{{$subject->name}}</li>
+                    @endforeach
+                </ul>
+            </th>
             <th><a href="students/{{$student->id}}/edit"><button>Editar</button></a>
                 <form action="students/{{$student->id}}" method="POST">
                     @csrf

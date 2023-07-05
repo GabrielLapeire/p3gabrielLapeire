@@ -55,7 +55,7 @@ class StudentController extends Controller
 
         // insertar datos en la tabla intermedia
         $subject_ids = $request->subject_list;
-        $student->subjects()->sync($subject_ids);
+        $student->subjects()->attach($subject_ids);
 
         $this->logChanges('alta', 'A');
 

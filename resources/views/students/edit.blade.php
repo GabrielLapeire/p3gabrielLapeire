@@ -33,7 +33,7 @@
                 </th>
                 {{-- se busca usar la carrera como filtro para las materias, no se busca guardar la carrera --}}
                 <th>@foreach ($subjects as $subject)
-                    <input name="subject_list" type="checkbox" value="{{$subject->id}}">{{$subject->name}} <br>
+                    <input name="subject_list[]" type="checkbox" value="{{$subject->id}}">{{$subject->name}} <br>
                     @endforeach
                 </th>
             </tr>
