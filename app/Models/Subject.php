@@ -37,4 +37,9 @@ class Subject extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function assistence(): HasMany
+    {
+        return $this->hasMany(Assistence::class);
+    }
 }

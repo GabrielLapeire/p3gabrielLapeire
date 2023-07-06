@@ -2,8 +2,9 @@
 <table border="1">
     <thead>
         <tr>
+            <th>Fecha</th>
             <th>Nombre</th>
-            <th>Alumno</th>
+            <th>Apellido</th>
             <th>Materia</th>
             <th>Acciones</th>
         </tr>
@@ -12,9 +13,16 @@
         @foreach ($assistances as $assistance)
         <tr>
             <th>{{$assistance->date}}</th>
-            <th></th>
-            <th></th>
-            <th><a href="#"><button>Editar</button></a></th>
+            <th>{{$assistance->first_name}}</th>
+            <th>{{$assistance->last_name}}</th>
+            <th>{{$assistance->name}}</th>
+            <th><a href="assistances/{{$assistance->id}}/edit"><button>Editar</button></a>
+                <form action="assistances/{{$assistance->id}}" method="POST">
+                    @csrf
+                    @method('delete')
+                <button>Eliminar</button>
+                </form>
+            </th>
         </tr>
         @endforeach
     </tbody>

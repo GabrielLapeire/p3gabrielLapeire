@@ -8,7 +8,7 @@ use App\Models\Student;
 use App\Models\SubjectSettings;
 use Carbon\Carbon;
 use App\Models\Day;
-use exception;
+use Illuminate\Support\Facades\DB;
 
 class AssistanceController extends Controller
 {
@@ -17,7 +17,12 @@ class AssistanceController extends Controller
      */
     public function index()
     {
-		$assistances = Assistance::all();
+		$assistances = DB::table('assistances')
+            ->join('students', 'assistances.student_id', '=', 'students.id')
+            ->join('subjects', 'assistances.subject_id', '=', 'subjects.id')
+            ->select('students.last_name','students.name as first_name', 'subjects.name',
+            'assistances.id', 'assistances.date')
+            ->get();
         return view('assistances.index', compact('assistances'));
     }
 
@@ -35,40 +40,39 @@ class AssistanceController extends Controller
     public function store(Request $request)
     {
         $student = Student::where('dni', $request->dni)->first();
-        
         if (empty($student)) {
             return response('El estudiante no existe');
         }
         
         $now = Carbon::now();
         $date = $now->toDateString();
-        $time = $now->format('H:i:s');
+        $time = $now->parse();
         $weekday = $now->weekday();
         $day = Day::where('id', $weekday)->get();
+        $day = $day[0]->name;
         
         $subjects = $student->subjects;
         foreach ($subjects as $subject) {
             $subjectSettings = $subject->subjectSettings;
             foreach ($subjectSettings as $subjectSetting){
-                // dd($subjectSetting->time_limit);
-                if ($subjectSetting->day == $day &&
-                $time >= $subjectSetting->time_start &&
-                $time <= $subjectSetting->time_limit) {
-                    return response('ok');
+                $start = Carbon::parse($subjectSetting->time_start);
+                $limit = Carbon::parse($subjectSetting->time_limit);
+                $inClass = $time->between($start, $limit);
+                if ($subjectSetting->day == $day && $inClass) {
+                    $ok = 'ok';
+                    Assistance::create([
+                    'date' => $date,
+                    'student_id' => $student->id,
+                    'subject_id' => $subject->id,
+                    ]);
+                    
+                    return redirect()->route('assistances.index');
                 }
             }
         }
-
-        // return response('El estudiante no tiene ninguna materia en este horario');
-
-        // $assistance = Assistance::create([
-        //     'date' => $date,
-        //     'student_id' => $student->id,
-        //     'subject_id' => $subjects->id,
-        // segun dia y hora
-        // ]);
-
-        // return redirect()->route('assistances.index');
+        if (empty($ok)) {
+            return response('El estudiante no tiene ninguna materia en este horario');
+        }
     }
 
     /**
@@ -84,7 +88,13 @@ class AssistanceController extends Controller
      */
     public function edit(string $id)
     {
-        $assistance = Assistance::where('id', $id)->get();
+        $assistance = DB::table('assistances')
+            ->where('assistances.id', $id)
+            ->join('students', 'assistances.student_id', '=', 'students.id')
+            ->join('subjects', 'assistances.subject_id', '=', 'subjects.id')
+            ->select('students.last_name','students.name as first_name', 'subjects.name',
+            'assistances.id', 'assistances.date')
+            ->get();
         return view('assistances.edit', compact('assistance'));
     }
 
@@ -93,13 +103,33 @@ class AssistanceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $assistance = Assistance::find($id);
-        $assistance->date = $request->date;
-        $assistance->student_id = $request->student_id;
-        $assistance->subject_id = $request->subject_id;
-        $assistance->save();
+        $assistance = DB::table('assistances')
+        ->where('assistances.id', $id)
+        ->join('students', 'assistances.student_id', '=', 'students.id')
+        ->join('subjects', 'assistances.subject_id', '=', 'subjects.id')
+        ->select('students.last_name','students.name as first_name', 'subjects.name',
+        'assistances.id', 'assistances.date')
+        ->get();
 
-        return redirect()->route('assistances.index');
+        $student_id = DB::table('students')
+        ->where('students.name', $request->first_name)
+        ->where('students.last_name', $request->last_name)
+        ->select('students.id')
+        ->get();
+        $subject_id = DB::table('subjects')
+        ->where('subjects.name', $request->subject)
+        ->select('subjects.id')
+        ->get();
+
+        dd($student_id);
+
+        // $assistance = Assistance::find($id);
+        // $assistance->date = $request->date;
+        // $assistance->student_id = $student_id;
+        // $assistance->subject_id = $subject_id;
+        // $assistance->save();
+
+        // return redirect()->route('assistances.index');
     }
 
     /**
