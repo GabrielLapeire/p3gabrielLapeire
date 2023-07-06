@@ -76,9 +76,10 @@ class StudentController extends Controller
     public function edit(string $id)
     {
         $student = Student::where('id', $id)->get();
-        $careers = Career::all();
         $subjects = Subject::all();
-        return view('students.edit', compact('student', 'careers', 'subjects'));
+        $studentSubjects = $student[0]->subjects;
+        
+        return view('students.edit', compact('student', 'subjects', 'studentSubjects'));
     }
 
     /**

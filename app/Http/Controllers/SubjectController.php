@@ -47,9 +47,10 @@ class SubjectController extends Controller
      */
     public function edit(string $id)
     {
-        $careers = Career::all();
         $subject = Subject::where('id', $id)->get();
-        return view('subjects.edit', compact('subject', 'careers'));
+        $careers = Career::all();
+        $subjectCareer = $subject[0]->career;
+        return view('subjects.edit', compact('subject', 'careers', 'subjectCareer'));
     }
 
     /**

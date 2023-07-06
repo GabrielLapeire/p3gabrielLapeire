@@ -16,7 +16,8 @@
             <th>{{$assistance->first_name}}</th>
             <th>{{$assistance->last_name}}</th>
             <th>{{$assistance->name}}</th>
-            <th><a href="assistances/{{$assistance->id}}/edit"><button>Editar</button></a>
+            <th>
+                {{-- <a href="assistances/{{$assistance->id}}/edit"><button>Editar</button></a> --}}
                 <form action="assistances/{{$assistance->id}}" method="POST">
                     @csrf
                     @method('delete')

@@ -9,6 +9,7 @@ use App\Models\SubjectSettings;
 use Carbon\Carbon;
 use App\Models\Day;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class AssistanceController extends Controller
 {
@@ -44,9 +45,12 @@ class AssistanceController extends Controller
             return response('El estudiante no existe');
         }
         
-        $now = Carbon::now();
+        $now = Carbon::now('America/Argentina/Buenos_Aires');
         $date = $now->toDateString();
-        $time = $now->parse();
+        $timeNow = new DateTime('-3 hours');
+        $time = Carbon::parse($timeNow);
+        //$time = now->parse();
+        //dd($time);
         $weekday = $now->weekday();
         $day = Day::where('id', $weekday)->get();
         $day = $day[0]->name;
@@ -58,6 +62,7 @@ class AssistanceController extends Controller
                 $start = Carbon::parse($subjectSetting->time_start);
                 $limit = Carbon::parse($subjectSetting->time_limit);
                 $inClass = $time->between($start, $limit);
+                //dd($inClass);
                 if ($subjectSetting->day == $day && $inClass) {
                     $ok = 'ok';
                     Assistance::create([
@@ -112,10 +117,9 @@ class AssistanceController extends Controller
         ->get();
 
         $student_id = DB::table('students')
-        ->where('students.name', $request->first_name)
-        ->where('students.last_name', $request->last_name)
-        ->select('students.id')
+        ->where('students.id', $id)
         ->get();
+        
         $subject_id = DB::table('subjects')
         ->where('subjects.name', $request->subject)
         ->select('subjects.id')
